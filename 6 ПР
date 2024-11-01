@@ -1,0 +1,4 @@
+a = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffffffffddddddwasdawfsachqwgfhvqwhqywvdqhwuidgufqwyduqwvgduqwnxdqw7y8yduiqwgyuduqwbdtqwhdyhqwdyhuiahsduasjkdiasiodhias8dhasdghuiquwhduia"
+count = len(a) - len(a.replace("a", ""))
+print(a)
+print(str(count))
