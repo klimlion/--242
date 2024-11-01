@@ -1,0 +1,70 @@
+n = int(input())
+i = 1
+while i ** 2 <= n:
+    print(i ** 2)
+    i += 1
+
+n = int(input())
+i = 2
+while n % i != 0:
+    i += 1
+print(i)
+
+n = int(input())
+a = 2
+p = 1
+while a <= n:
+    a *= 2
+    p += 1
+print(p - 1, a // 2)
+
+x = int(input())
+y = int(input())
+i = 1
+while x < y:
+    x *= 1.1
+    i += 1
+print(i)
+
+n = 1
+i = 0
+while n != 0:
+    n = int(input())
+    i += 1
+print(i - 1)
+
+sum = len = 0
+el = int(input())
+while el != 0:
+    sum += el
+    len += 1
+    el = int(input())
+print(sum / len)
+
+i = 1
+max_i = 1
+max_n = 0
+n = 1
+while n != 0:
+    n = int(input())
+    if n > max_n:
+        max_i = i
+        max_n = n
+    i += 1
+print(max_i)
+
+result = 1
+seq = 0
+prev = 0
+cur_seq = 0
+number = int(input())
+while number > 0:
+    if prev == number:
+        cur_seq += 1
+    else:
+        cur_seq = 1
+    if cur_seq != 1 and cur_seq > result:
+        result = cur_seq
+    prev = number
+    number = int(input())
+print(result)
