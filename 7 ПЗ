@@ -1,0 +1,26 @@
+Вариант 6 
+
+
+t = [int(input()) for _ in range(10)]
+b=[]
+m=[]
+s=sum(t)/len(t)
+for x in (t):
+    if x>s:
+        b.append(x)
+    else:
+        m.append(x)
+print(s,b,m)
+
+
+
+
+
+
+t = [int(input()) for _ in range(10)]
+b=[]
+for x in (t):
+    if x>5:
+        b.append(x)
+c=sum(b[:3])
+print(c)
