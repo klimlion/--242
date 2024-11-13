@@ -1,0 +1,25 @@
+вАРИАНТ 6
+
+
+a = int(input())
+b = int(input())
+while a != 0 and b != 0:
+    if a > b:
+        a = a % b
+    else:
+        b = b % a
+gcd = a + b
+print(gcd)
+
+
+import math
+def s(x, y):
+    s = math.sqrt(x * (x - ab) * (x - bc) * (x - ac)) + math.sqrt(y * (y - ad) * (y - cd) * (y - ac))
+ab = int(input())
+bc = int(input())
+cd = int(input())
+ad = int(input())
+ac = int(input())
+x = (ab + bc + ac) // 2
+y = (ad + cd + ac) // 2
+print(s(x, y))
