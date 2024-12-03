@@ -1,0 +1,63 @@
+def get_repo_data(repo_name):
+    try:
+        url = f"https://api.github.com/repos/{repo_name}"
+        response = requests.get(url)
+        response.raise_for_status()
+        repo_data = response.json()
+        result = {
+            "company": repo_data.get("owner", {}).get("company"),
+            "created_at": repo_data.get("created_at"),
+            "email": repo_data.get("owner", {}).get("email"),
+            "id": repo_data.get("id"),
+            "name": repo_data.get("name"),
+            "url": repo_data.get("owner", {}).get("url"),
+        }
+        return result
+    except requests.exceptions.RequestException as e:
+        messagebox.showerror("Ошибка", f"Не удалось получить данные: {e}")
+        return None
+
+def save_data(data, repo_name):
+    try:
+        safe_repo_name = repo_name.replace("/", "_")
+        output_dir = "output"
+        os.makedirs(output_dir, exist_ok=True)
+        file_path = os.path.join(output_dir, f"{safe_repo_name}_data.json")
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
+        messagebox.showinfo("Успех", f"Данные сохранены в {file_path}")
+    except Exception as e:
+        messagebox.showerror("Ошибка", f"Не удалось сохранить файл: {e}")
+
+def create_zip():
+    try:
+        output_dir = "output"
+        archive_name = "output_archive.zip"
+        shutil.make_archive("output_archive", 'zip', output_dir)
+        messagebox.showinfo("Успех", f"Архив создан: {archive_name}")
+    except Exception as e:
+        messagebox.showerror("Ошибка", f"Не удалось создать архив: {e}")
+
+def fetch_and_save():
+    repo_name = repo_entry.get().strip()
+    if not repo_name:
+        messagebox.showwarning("Ошибка ввода", "Введите имя репозитория.")
+        return
+    data = get_repo_data(repo_name)
+    if data:
+        save_data(data, repo_name)
+
+root = tk.Tk()
+root.title("GitHub Repo Data Fetcher")
+
+tk.Label(root, text="Введите имя репозитория:").grid(row=0, column=0, padx=10, pady=5, sticky="w")
+repo_entry = tk.Entry(root, width=40)
+repo_entry.grid(row=0, column=1, padx=10, pady=5)
+
+fetch_button = tk.Button(root, text="Получить и сохранить", command=fetch_and_save)
+fetch_button.grid(row=1, column=0, padx=10, pady=10)
+
+archive_button = tk.Button(root, text="Создать архив", command=create_zip)
+archive_button.grid(row=1, column=1, padx=10, pady=10)
+
+root.mainloop()
