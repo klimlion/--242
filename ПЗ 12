@@ -1,0 +1,40 @@
+def reverse_number(n):
+    if n < 0:
+        print("-", end="")
+        reverse_number(-n)
+        return
+
+    if n < 10:
+        print(n, end="")
+        return
+
+    print(n % 10, end="")
+    reverse_number(n // 10)
+
+
+number = 12345
+print("Исхо ч:", number)
+print("Число в обр пор:", end=" ")
+reverse_number(number)
+
+
+
+
+
+def print_odd_numbers():
+    num = int(input())
+
+    if num == 0:
+        return
+
+    if print_odd_numbers.counter % 2 == 1:
+        print(num)
+
+    print_odd_numbers.counter += 1
+
+    print_odd_numbers()
+
+
+print_odd_numbers.counter = 1
+
+print_odd_numbers()
